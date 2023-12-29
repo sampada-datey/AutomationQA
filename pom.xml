@@ -44,8 +44,9 @@
     <scope>test</scope> <!-- This can be "compile" based on your requirements -->
 </dependency>
   </dependencies>
-	<plugins>
-  <plugin>
+	<build>
+		<pluginManagement>
+		<plugins>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-compiler-plugin</artifactId>
     <version>3.6.1</version>
@@ -55,4 +56,6 @@
     </configuration>
   </plugin>
 </plugins>
+		</pluginManagement>
+	</build>
 </project>

@@ -28,9 +28,13 @@ steps:
 - script: |
     # Run your tests using testng.xml
     mvn test -DsuiteXmlFile=testng.xml
+
+    # Assuming the Extent Report is generated in a specific directory, move or copy it to TestReport folder
+    mv TestReport/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/
+  displayName: 'Move Extent Report to TestReport Folder'
+
 - task: PublishBuildArtifacts@1
   inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'ExtentReport'
-        publishLocation: 'Container'
-      
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'ExtentReport'
+    publishLocation: 'Container'

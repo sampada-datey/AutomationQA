@@ -23,11 +23,11 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    goals: 'clean test -DsuiteXmlFile=testSuits/testng.xml'
+    goals: 'clean test -DsuiteXmlFile=testng.xml'
   
 - script: |
     # Run your tests using testng.xml
-    mvn test -DsuiteXmlFile=testSuits/testng.xml
+    mvn test -DsuiteXmlFile=testng.xml
 - task: PublishBuildArtifacts@1
   inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)/TestReport'

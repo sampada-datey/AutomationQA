@@ -27,8 +27,9 @@ steps:
   
 - script: |
     # Run your tests using testng.xml
-    mvn test -DsuiteXmlFile=testng.xml
     rm -f TestReport/Test-Automaton-Report.html
+    mvn test -DsuiteXmlFile=testng.xml
+    
     mkdir -p $(Build.ArtifactStagingDirectory)/TestReport
 
 

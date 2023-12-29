@@ -28,13 +28,17 @@ steps:
 - script: |
     # Run your tests using testng.xml
     mvn test -DsuiteXmlFile=testng.xml
-    rm -f generated-report-path/Test-Automaton-Report.html
+    rm -f TestReport/Test-Automaton-Report.html
     mkdir -p $(Build.ArtifactStagingDirectory)/TestReport
+
 
     # Assuming the Extent Report is generated in a specific directory, move or copy it to TestReport folder
     mv TestReport/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/
   displayName: 'Move Extent Report to TestReport Folder'
-
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testRunTitle: 'Test Run Title'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'

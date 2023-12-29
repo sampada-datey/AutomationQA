@@ -25,6 +25,7 @@ steps:
     # Run tests using testng.xml
     mvn test -DsuiteXmlFile=testng.xml
     timestamp=$(date +"%Y%m%d%H%M%S")
+    mkdir -p $(Build.ArtifactStagingDirectory)/TestReport
     cp TestReport/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/Test-Automaton-Report-${timestamp}.html
   displayName: 'Update and Move Extent Report in TestReport Folder'
 

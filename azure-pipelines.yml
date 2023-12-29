@@ -21,7 +21,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 - script: |
-    rm -f TestReport/Test-Automaton-Report.html
+    
     mvn test -DsuiteXmlFile=testng.xml
     
     mkdir -p $(Build.ArtifactStagingDirectory)/TestReport

@@ -31,10 +31,7 @@ steps:
     mv TestReport/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/
   displayName: 'Move Extent Report to TestReport Folder'
 
-- task: PublishTestResults@2
-  inputs:
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    testRunTitle: 'Test Run Title'
+
 
 - task: PublishBuildArtifacts@1
   inputs:

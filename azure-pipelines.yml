@@ -20,18 +20,18 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
 - script: |
-    
+    # Run tests using testng.xml
     mvn test -DsuiteXmlFile=testng.xml
     
-   
+    # Assuming the Extent Report is generated in a specific directory
+    # Remove the old report before moving the new one
+    rm -f $(Build.ArtifactStagingDirectory)/TestReport/Test-Automaton-Report.html
     
-    # Assuming the Extent Report is generated in a specific directory, move or copy it to TestReport folder
-    # Make sure the path and filename are correct
-    mv TestReport/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/
-  displayName: 'Move Extent Report to TestReport Folder'
-
-
+    # Move the updated report to the TestReport folder
+    mv generated-report-path/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/
+  displayName: 'Update and Move Extent Report in TestReport Folder'
 
 - task: PublishBuildArtifacts@1
   inputs:

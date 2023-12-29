@@ -20,26 +20,22 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'clean test -DsuiteXmlFile=testng.xml'
-  
 - script: |
-    # Run your tests using testng.xml
     rm -f TestReport/Test-Automaton-Report.html
     mvn test -DsuiteXmlFile=testng.xml
     
     mkdir -p $(Build.ArtifactStagingDirectory)/TestReport
-
-
+    
     # Assuming the Extent Report is generated in a specific directory, move or copy it to TestReport folder
+    # Make sure the path and filename are correct
     mv TestReport/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/
   displayName: 'Move Extent Report to TestReport Folder'
+
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     testRunTitle: 'Test Run Title'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'

@@ -30,7 +30,7 @@ steps:
     rm -f $(Build.ArtifactStagingDirectory)/TestReport/Test-Automaton-Report.html
     
     # Move the updated report to the TestReport folder
-    mv generated-report-path/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/
+    mv TestReport/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/
   displayName: 'Update and Move Extent Report in TestReport Folder'
 
 - task: PublishBuildArtifacts@1

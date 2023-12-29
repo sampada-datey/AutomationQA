@@ -30,6 +30,7 @@ steps:
     mvn test -DsuiteXmlFile=testng.xml
 - task: PublishBuildArtifacts@1
   inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)/TestReport'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'ExtentReport'
         publishLocation: 'Container'
+      

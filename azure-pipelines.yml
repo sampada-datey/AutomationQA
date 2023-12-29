@@ -24,7 +24,7 @@ steps:
     
     mvn test -DsuiteXmlFile=testng.xml
     
-    mkdir -p $(Build.ArtifactStagingDirectory)/TestReport
+   
     
     # Assuming the Extent Report is generated in a specific directory, move or copy it to TestReport folder
     # Make sure the path and filename are correct

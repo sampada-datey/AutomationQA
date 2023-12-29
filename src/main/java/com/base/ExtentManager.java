@@ -5,7 +5,13 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 public class ExtentManager {
+	
+	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HHmmss");
+        static LocalDateTime now = LocalDateTime.now();
+        static String timestamp = now.format(formatter);
 	private static ExtentReports extent;
     private static String reportFileName = "Test-Automaton-Report"+".html";
     private static String fileSeperator = System.getProperty("file.separator");

@@ -24,11 +24,16 @@ steps:
 - script: |
     # Run tests using testng.xml
     mvn test -DsuiteXmlFile=testng.xml
-    timestamp=$(date +"%Y_%m_%d_%H_%M_%S")
+    timestamp=$(date +"%Y_%m_%d_%H_%M%S")
     mkdir -p $(Build.ArtifactStagingDirectory)/TestReport
     cp TestReport/Test-Automaton-Report.html $(Build.ArtifactStagingDirectory)/TestReport/Test-Automaton-Report-${timestamp}.html
   displayName: 'Update and Move Extent Report in TestReport Folder'
-
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
+    mergeTestResults: true
+    testRunTitle: 'Single'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
